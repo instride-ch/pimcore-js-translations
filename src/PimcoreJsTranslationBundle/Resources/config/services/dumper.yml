@@ -1,0 +1,8 @@
+services:
+
+    # Pimcore Website Translation Dumper
+    Wvision\Bundle\PimcoreJsTranslationBundle\Dumper\PimcoreWebsiteTranslationDumper:
+        arguments:
+            - '%pimcore_js_translation.dumper.default_locale%'
+            - '%pimcore_js_translation.dumper.domain_name%'
+            - '@translation.dumper.xliff'

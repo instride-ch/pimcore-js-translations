@@ -1,0 +1,7 @@
+services:
+
+    # Pimcore Website Translation Loader
+    Wvision\Bundle\PimcoreJsTranslationBundle\Loader\PimcoreWebsiteTranslationLoader:
+        arguments:
+            - '%pimcore_js_translation.dumper.domain_name%'
+            - '@translation.loader.xliff'

@@ -1,0 +1,9 @@
+services:
+
+    # Translation File Generator
+    Wvision\Bundle\PimcoreJsTranslationBundle\Filesystem\TranslationFileGenerator:
+        arguments:
+            - '%pimcore_js_translation.dumper.domain_name%'
+            - '@Wvision\Bundle\PimcoreJsTranslationBundle\Dumper\PimcoreWebsiteTranslationDumper'
+            - '@filesystem'
+            - '@Wvision\Bundle\PimcoreJsTranslationBundle\Loader\PimcoreWebsiteTranslationLoader'
