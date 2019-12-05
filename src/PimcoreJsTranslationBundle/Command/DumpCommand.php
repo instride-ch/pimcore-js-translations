@@ -1,13 +1,15 @@
 <?php
 /**
- * w-vision AG.
+ * Pimcore JavaScript Translations.
  *
  * LICENSE
  *
- * For the full copyright and license information, please view the LICENSE.md
- * file that is distributed with this source code.
+ * This source file is subject to the GNU General Public License version 3 (GPLv3)
+ * For the full copyright and license information, please view the LICENSE.md and gpl-3.0.txt
+ * files that are distributed with this source code.
  *
- * @copyright  Copyright (c) 2019 w-vision AG (https://www.w-vision.ch)
+ * @copyright  Copyright (c) 2016-2019 w-vision AG (https://www.w-vision.ch)
+ * @license    https://github.com/w-vision/PimcoreJsTranslationBundle/blob/master/LICENSE GNU General Public License version 3 (GPLv3)
  */
 
 namespace Wvision\Bundle\PimcoreJsTranslationBundle\Command;
@@ -18,23 +20,23 @@ use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Wvision\Bundle\PimcoreJsTranslationBundle\Filesystem\TranslationFileGeneratorInterface;
+use Wvision\Bundle\PimcoreJsTranslationBundle\Filesystem\PimcoreTranslationGeneratorInterface;
 
 class DumpCommand extends Command
 {
     /**
-     * @var TranslationFileGeneratorInterface
+     * @var PimcoreTranslationGeneratorInterface
      */
-    private $translationFileGenerator;
+    private $translationGenerator;
 
     /**
-     * @param TranslationFileGeneratorInterface $translationFileGenerator
+     * @param PimcoreTranslationGeneratorInterface $translationGenerator
      */
-    public function __construct(TranslationFileGeneratorInterface $translationFileGenerator)
+    public function __construct(PimcoreTranslationGeneratorInterface $translationGenerator)
     {
         parent::__construct();
 
-        $this->translationFileGenerator = $translationFileGenerator;
+        $this->translationGenerator = $translationGenerator;
     }
 
     /**
@@ -74,7 +76,7 @@ class DumpCommand extends Command
 
         $progress->start(count($translations));
 
-        foreach ($this->translationFileGenerator->generate($translations) as $translation) {
+        foreach ($this->translationGenerator->generate($translations) as $translation) {
             $progress->setMessage(sprintf('<question>INFO</question> Processing %s', $translation->getKey()));
             $progress->advance();
         }

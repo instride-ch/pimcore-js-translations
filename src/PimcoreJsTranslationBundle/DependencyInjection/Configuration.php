@@ -25,40 +25,27 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): Builder\TreeBuilder
     {
         $treeBuilder = new Builder\TreeBuilder('pimcore_js_translation');
+
         $rootNode = $treeBuilder->getRootNode();
         $rootNode
             ->addDefaultsIfNotSet()
-            ->info('Configuration of the Pimcore JavaScript Translation bundle.');
-
-        $rootNode->append($this->buildDumperNode());
-
-        return $treeBuilder;
-    }
-
-    /**
-     * @return Builder\ArrayNodeDefinition|Builder\NodeDefinition
-     */
-    private function buildDumperNode()
-    {
-        $treeBuilder = new Builder\TreeBuilder('dumper');
-
-        $dumper = $treeBuilder->getRootNode();
-        $dumper
-            ->addDefaultsIfNotSet()
-            ->info('Configuration of the dumper settings.');
-
-        $dumper
+            ->info('Configuration of the Pimcore JavaScript Translation bundle.')
             ->children()
+
                 // Default Locale
                 ->scalarNode('default_locale')
+                    ->info('The source language from which the translations are made.')
                     ->defaultValue('en')
                 ->end()
+
                 // Domain Name
                 ->scalarNode('domain_name')
+                    ->info('The name of the translation domain used for Pimcore translations.')
                     ->defaultValue('pimcore')
                 ->end()
+
             ->end();
 
-        return $dumper;
+        return $treeBuilder;
     }
 }

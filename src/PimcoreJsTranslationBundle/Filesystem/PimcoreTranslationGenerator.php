@@ -19,11 +19,12 @@ use InvalidArgumentException;
 use OutOfRangeException;
 use Pimcore\Model\Translation\AbstractTranslation;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 use Symfony\Component\Translation\MessageCatalogue;
-use Wvision\Bundle\PimcoreJsTranslationBundle\Dumper\PimcoreTranslationDumperInterface;
-use Wvision\Bundle\PimcoreJsTranslationBundle\Loader\PimcoreTranslationLoaderInterface;
+use Wvision\Bundle\PimcoreJsTranslationBundle\Dumper\TranslationDumperInterface;
+use Wvision\Bundle\PimcoreJsTranslationBundle\Loader\TranslationLoaderInterface;
 
-class TranslationFileGenerator implements TranslationFileGeneratorInterface
+class PimcoreTranslationGenerator implements PimcoreTranslationGeneratorInterface
 {
     /**
      * @var string
@@ -31,7 +32,7 @@ class TranslationFileGenerator implements TranslationFileGeneratorInterface
     private $domainName;
 
     /**
-     * @var PimcoreTranslationDumperInterface
+     * @var TranslationDumperInterface
      */
     private $dumper;
 
@@ -41,7 +42,7 @@ class TranslationFileGenerator implements TranslationFileGeneratorInterface
     private $filesystem;
 
     /**
-     * @var PimcoreTranslationLoaderInterface
+     * @var TranslationLoaderInterface
      */
     private $loader;
 
@@ -52,15 +53,15 @@ class TranslationFileGenerator implements TranslationFileGeneratorInterface
 
     /**
      * @param string $domainName
-     * @param PimcoreTranslationDumperInterface $dumper
+     * @param TranslationDumperInterface $dumper
      * @param Filesystem $filesystem
-     * @param PimcoreTranslationLoaderInterface $loader
+     * @param TranslationLoaderInterface $loader
      */
     public function __construct(
         string $domainName,
-        PimcoreTranslationDumperInterface $dumper,
+        TranslationDumperInterface $dumper,
         Filesystem $filesystem,
-        PimcoreTranslationLoaderInterface $loader
+        TranslationLoaderInterface $loader
     ) {
         $this->domainName = $domainName;
         $this->dumper = $dumper;
@@ -68,7 +69,6 @@ class TranslationFileGenerator implements TranslationFileGeneratorInterface
         $this->loader = $loader;
 
         $this->translationDirectory = __DIR__ . '/../Resources/translations';
-
     }
 
     /**
@@ -85,6 +85,24 @@ class TranslationFileGenerator implements TranslationFileGeneratorInterface
 
             yield $translation;
         }
+    }
+
+    /**
+     * @param string|null $locale
+     */
+    public function cleanupTranslationFiles(string $locale = null): void
+    {
+        $finder = new Finder();
+        $translationFiles = $finder
+            ->files()
+            ->name(sprintf('%s.%s.xlf', $this->domainName, $locale ?: '*'))
+            ->in($this->translationDirectory);
+
+        if (null === $translationFiles) {
+            return;
+        }
+
+        $this->filesystem->remove($translationFiles);
     }
 
     /**

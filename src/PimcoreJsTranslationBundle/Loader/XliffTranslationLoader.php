@@ -17,7 +17,7 @@ namespace Wvision\Bundle\PimcoreJsTranslationBundle\Loader;
 use Symfony\Component\Translation\Loader\XliffFileLoader;
 use Symfony\Component\Translation\MessageCatalogue;
 
-class PimcoreWebsiteTranslationLoader implements PimcoreTranslationLoaderInterface
+class XliffTranslationLoader implements TranslationLoaderInterface
 {
     /**
      * @var string

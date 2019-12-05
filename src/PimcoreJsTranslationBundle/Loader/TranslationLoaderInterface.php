@@ -16,10 +16,10 @@ namespace Wvision\Bundle\PimcoreJsTranslationBundle\Loader;
 
 use Symfony\Component\Translation\MessageCatalogue;
 
-interface PimcoreTranslationLoaderInterface
+interface TranslationLoaderInterface
 {
     /**
-     * Loads a generated Pimcore translation file and returns its message catalogue.
+     * Loads a translation file and returns its message catalogue.
      *
      * @param string $resource
      * @param string $locale

@@ -19,7 +19,7 @@ use InvalidArgumentException;
 use OutOfRangeException;
 use Pimcore\Model\Translation\AbstractTranslation;
 
-interface TranslationFileGeneratorInterface
+interface PimcoreTranslationGeneratorInterface
 {
     /**
      * Generates translation files for all passed Pimcore translations.
@@ -31,6 +31,14 @@ interface TranslationFileGeneratorInterface
      * @throws InvalidArgumentException
      */
     public function generate(array $translations): ?Generator;
+
+    /**
+     * Looks for translation files and removes them.
+     *
+     * @param string|null $locale
+     *
+     */
+    public function cleanupTranslationFiles(string $locale = null): void;
 
     /**
      * Writes a specific Pimcore translation in all languages to translation files.

@@ -18,21 +18,21 @@ use Pimcore\Event\Model\TranslationEvent;
 use Pimcore\Event\TranslationEvents;
 use Pimcore\Model\Translation;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Wvision\Bundle\PimcoreJsTranslationBundle\Filesystem\TranslationFileGeneratorInterface;
+use Wvision\Bundle\PimcoreJsTranslationBundle\Filesystem\PimcoreTranslationGeneratorInterface;
 
 class PimcoreWebsiteTranslationEventSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var TranslationFileGeneratorInterface
+     * @var PimcoreTranslationGeneratorInterface
      */
-    private $translationFileGenerator;
+    private $translationGenerator;
 
     /**
-     * @param TranslationFileGeneratorInterface $translationFileGenerator
+     * @param PimcoreTranslationGeneratorInterface $translationGenerator
      */
-    public function __construct(TranslationFileGeneratorInterface $translationFileGenerator)
+    public function __construct(PimcoreTranslationGeneratorInterface $translationGenerator)
     {
-        $this->translationFileGenerator = $translationFileGenerator;
+        $this->translationGenerator = $translationGenerator;
     }
 
     /**
@@ -57,7 +57,7 @@ class PimcoreWebsiteTranslationEventSubscriber implements EventSubscriberInterfa
             return;
         }
 
-        $this->translationFileGenerator->update($translation);
+        $this->translationGenerator->update($translation);
     }
 
     /**
@@ -71,6 +71,6 @@ class PimcoreWebsiteTranslationEventSubscriber implements EventSubscriberInterfa
             return;
         }
 
-        $this->translationFileGenerator->remove($translation);
+        $this->translationGenerator->remove($translation);
     }
 }

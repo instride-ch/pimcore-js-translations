@@ -16,10 +16,10 @@ namespace Wvision\Bundle\PimcoreJsTranslationBundle\Dumper;
 
 use Symfony\Component\Translation\MessageCatalogueInterface;
 
-interface PimcoreTranslationDumperInterface
+interface TranslationDumperInterface
 {
     /**
-     * Dumps the generated xliff markup of a message catalogue.
+     * Dumps the generated markup of a message catalogue.
      *
      * @param MessageCatalogueInterface $catalog
      *

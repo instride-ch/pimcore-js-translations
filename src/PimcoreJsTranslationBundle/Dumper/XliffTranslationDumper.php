@@ -17,7 +17,7 @@ namespace Wvision\Bundle\PimcoreJsTranslationBundle\Dumper;
 use Symfony\Component\Translation\Dumper\XliffFileDumper;
 use Symfony\Component\Translation\MessageCatalogueInterface;
 
-class PimcoreWebsiteTranslationDumper implements PimcoreTranslationDumperInterface
+class XliffTranslationDumper implements TranslationDumperInterface
 {
     /**
      * @var string

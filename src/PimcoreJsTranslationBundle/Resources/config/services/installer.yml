@@ -1,0 +1,13 @@
+services:
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    # Pimcore Translation Installer
+    Wvision\Bundle\PimcoreJsTranslationBundle\Installer\PimcoreTranslationInstaller:
+        arguments:
+            $bundle: "@=service('kernel').getBundle('PimcoreJsTranslationBundle')"
+        calls:
+            - [setTranslationGenerator, ['@Wvision\Bundle\PimcoreJsTranslationBundle\Filesystem\PimcoreTranslationGenerator']]

@@ -32,19 +32,19 @@ class PimcoreJsTranslationExtension extends ConfigurableExtension
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
 
-        $this->registerDumperConfiguration($container, $mergedConfigs['dumper']);
+        $this->registerConfiguration($container, $mergedConfigs);
     }
 
     /**
      * @param ContainerBuilder $container
      * @param array            $config
      */
-    private function registerDumperConfiguration(ContainerBuilder $container, array $config): void
+    private function registerConfiguration(ContainerBuilder $container, array $config): void
     {
         // Default Locale
-        $container->setParameter('pimcore_js_translation.dumper.default_locale', $config['default_locale']);
+        $container->setParameter('pimcore_js_translation.default_locale', $config['default_locale']);
 
         // Domain Name
-        $container->setParameter('pimcore_js_translation.dumper.domain_name', $config['domain_name']);
+        $container->setParameter('pimcore_js_translation.domain_name', $config['domain_name']);
     }
 }

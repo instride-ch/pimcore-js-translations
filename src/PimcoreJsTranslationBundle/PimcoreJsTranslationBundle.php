@@ -19,6 +19,7 @@ use CoreShop\Bundle\ResourceBundle\CoreShopResourceBundle;
 use Pimcore\Extension\Bundle\Installer\InstallerInterface;
 use Pimcore\Extension\Bundle\PimcoreBundleInterface;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
+use Wvision\Bundle\PimcoreJsTranslationBundle\Installer\PimcoreTranslationInstaller;
 
 class PimcoreJsTranslationBundle extends AbstractResourceBundle implements PimcoreBundleInterface
 {
@@ -63,7 +64,7 @@ class PimcoreJsTranslationBundle extends AbstractResourceBundle implements Pimco
      */
     public function getInstaller(): ?InstallerInterface
     {
-        return null;
+        return $this->container->get(PimcoreTranslationInstaller::class);
     }
 
     /**
