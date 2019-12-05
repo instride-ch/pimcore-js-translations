@@ -95,7 +95,7 @@ class PimcoreTranslationGenerator implements PimcoreTranslationGeneratorInterfac
         $finder = new Finder();
         $translationFiles = $finder
             ->files()
-            ->name(sprintf('%s.%s.xlf', $this->domainName, $locale ?: '*'))
+            ->name(sprintf('%s.xlf', $locale ? ('*.' . $locale) : '*'))
             ->in($this->translationDirectory);
 
         if (null === $translationFiles) {
