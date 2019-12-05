@@ -52,9 +52,9 @@ class PimcoreTranslationGenerator implements PimcoreTranslationGeneratorInterfac
     private $translationDirectory;
 
     /**
-     * @param string $domainName
+     * @param string                     $domainName
      * @param TranslationDumperInterface $dumper
-     * @param Filesystem $filesystem
+     * @param Filesystem                 $filesystem
      * @param TranslationLoaderInterface $loader
      */
     public function __construct(
@@ -96,9 +96,10 @@ class PimcoreTranslationGenerator implements PimcoreTranslationGeneratorInterfac
         $translationFiles = $finder
             ->files()
             ->name(sprintf('%s.xlf', $locale ? ('*.' . $locale) : '*'))
-            ->in($this->translationDirectory);
+            ->in($this->translationDirectory)
+            ->getIterator();
 
-        if (null === $translationFiles) {
+        if (!$finder->hasResults()) {
             return;
         }
 
@@ -119,7 +120,7 @@ class PimcoreTranslationGenerator implements PimcoreTranslationGeneratorInterfac
         }
 
         foreach ($translations as $locale => $content) {
-            if (empty($content)) {
+            if (!is_string($locale) || empty($content)) {
                 continue;
             }
 
@@ -162,6 +163,10 @@ class PimcoreTranslationGenerator implements PimcoreTranslationGeneratorInterfac
         }
 
         foreach (array_keys($translations) as $locale) {
+            if (!is_string($locale)) {
+                continue;
+            }
+
             $translationFilePath = sprintf(
                 '%s/%s.%s.xlf',
                 $this->translationDirectory,
@@ -205,8 +210,8 @@ class PimcoreTranslationGenerator implements PimcoreTranslationGeneratorInterfac
      * Either adds or overwrites a translation in the message catalogue.
      *
      * @param MessageCatalogue $catalogue
-     * @param string $id
-     * @param string $translation
+     * @param string           $id
+     * @param string           $translation
      */
     protected function addToCatalogue(MessageCatalogue $catalogue, string $id, string $translation): void
     {

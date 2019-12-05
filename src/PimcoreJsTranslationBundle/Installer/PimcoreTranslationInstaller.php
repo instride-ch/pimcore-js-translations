@@ -51,7 +51,15 @@ class PimcoreTranslationInstaller extends MigrationInstaller
             return;
         }
 
-        foreach ($this->translationGenerator->generate($translationsToInstall) as $translation) {
+        $iterator = $this->translationGenerator->generate($translationsToInstall);
+
+        if (null === $iterator) {
+            $this->outputWriter->write('<fg=red>ERROR:</> Translations couldn\'t be generated!');
+
+            return;
+        }
+
+        foreach ($iterator as $translation) {
             $this->outputWriter->write(sprintf('<fg=cyan>STATUS:</> Processing %s', $translation->getKey()));
         }
 

@@ -52,7 +52,7 @@ class DumpCommand extends Command
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output): void
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $translationList = new Translation\Website\Listing();
         $translationList->setOrderKey('key');
@@ -62,7 +62,15 @@ class DumpCommand extends Command
         if (empty($translations)) {
             $output->writeln('<error>ERROR</error> No translations available!');
 
-            return;
+            return 500;
+        }
+
+        $iterator = $this->translationGenerator->generate($translations);
+
+        if (null === $iterator) {
+            $output->writeln('<error>ERROR</error> Translations couldn\'t be generated!');
+
+            return 500;
         }
 
         $outputStyle = new OutputFormatterStyle('white', 'green', ['bold']);
@@ -76,12 +84,14 @@ class DumpCommand extends Command
 
         $progress->start(count($translations));
 
-        foreach ($this->translationGenerator->generate($translations) as $translation) {
+        foreach ($iterator as $translation) {
             $progress->setMessage(sprintf('<question>INFO</question> Processing %s', $translation->getKey()));
             $progress->advance();
         }
 
         $progress->setMessage('<success>DONE</success> Translation files successfully generated!');
         $progress->finish();
+
+        return 0;
     }
 }

@@ -30,7 +30,7 @@ class XliffTranslationLoader implements TranslationLoaderInterface
     private $xliffFileLoader;
 
     /**
-     * @param string $domainName
+     * @param string          $domainName
      * @param XliffFileLoader $xliffFileLoader
      */
     public function __construct(string $domainName, XliffFileLoader $xliffFileLoader)

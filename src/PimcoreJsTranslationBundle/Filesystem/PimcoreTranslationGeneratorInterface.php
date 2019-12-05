@@ -36,7 +36,6 @@ interface PimcoreTranslationGeneratorInterface
      * Looks for translation files and removes them.
      *
      * @param string|null $locale
-     *
      */
     public function cleanupTranslationFiles(string $locale = null): void;
 

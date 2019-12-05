@@ -51,3 +51,5 @@ tests/output
 tests/tmp
 generate-and-copy.sh
 var
+
+src/PimcoreJsTranslationBundle/Resources/translations/*.xlf

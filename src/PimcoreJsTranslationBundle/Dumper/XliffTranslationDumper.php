@@ -15,7 +15,7 @@
 namespace Wvision\Bundle\PimcoreJsTranslationBundle\Dumper;
 
 use Symfony\Component\Translation\Dumper\XliffFileDumper;
-use Symfony\Component\Translation\MessageCatalogueInterface;
+use Symfony\Component\Translation\MessageCatalogue;
 
 class XliffTranslationDumper implements TranslationDumperInterface
 {
@@ -35,8 +35,8 @@ class XliffTranslationDumper implements TranslationDumperInterface
     private $xliffFileDumper;
 
     /**
-     * @param string $defaultLocale
-     * @param string $domainName
+     * @param string          $defaultLocale
+     * @param string          $domainName
      * @param XliffFileDumper $xliffFileDumper
      */
     public function __construct(string $defaultLocale, string $domainName, XliffFileDumper $xliffFileDumper)
@@ -49,7 +49,7 @@ class XliffTranslationDumper implements TranslationDumperInterface
     /**
      * {@inheritdoc}
      */
-    public function dump(MessageCatalogueInterface $catalog): string
+    public function dump(MessageCatalogue $catalog): string
     {
         return $this->xliffFileDumper->formatCatalogue($catalog, $this->domainName, [
             'default_locale' => $this->defaultLocale,

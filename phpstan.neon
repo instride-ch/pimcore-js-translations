@@ -1,0 +1,40 @@
+includes:
+    - ../../vendor/phpstan/phpstan-symfony/extension.neon
+
+parameters:
+    autoload_files:
+        - %currentWorkingDirectory%/../../vendor/pimcore/pimcore/lib/helper-functions.php
+
+    reportUnmatchedIgnoredErrors: false
+
+    symfony:
+        container_xml_path: ../../var/cache/dev/appAppKernelDevDebugContainer.xml
+
+    excludes_analyse:
+        # Makes PHPStan crash
+        - '**/DependencyInjection/Configuration.php'
+        - '**/Migrations/Version*.php'
+
+    ignoreErrors:
+        # Magic calls
+        - '/Call to an undefined static method Webmozart\\Assert\\Assert::all/'
+        - '/Call to an undefined static method Webmozart\\Assert\\Assert::nullOr/'
+        - '/Call to an undefined method Faker\\Generator::/'
+        - '/Access to an undefined property Faker\\Generator::/'
+        - '/Constant PIMCORE_CONFIGURATION_DIRECTORY not found./'
+        - '/Constant PIMCORE_CLASS_DIRECTORY not found./'
+        - '/Constant PIMCORE_WEB_ROOT not found./'
+        - '/Constant PIMCORE_DEVMODE not found./'
+        - '/Class Zend_Paginator_Adapter_Interface not found and could not be autoloaded./'
+
+        - '/Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition::children()/'
+        - '/Call to an undefined method Pimcore\\Model\\(.*)::save()./'
+        - '/Call to an undefined method Pimcore\\Model\\(.*)::delete()./'
+
+        # Pimcore BC Breaks
+        - '/Class Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Href not found/'
+        - '/Class Pimcore\\Model\\DataObject\\ClassDefinition\\Data\\Multihref not found/'
+        - '/Class Pimcore\\Bundle\\AdminBundle\\Helper\\GridHelperService not found/'
+        - '/Class Pimcore\\Model\\DataObject\\LazyLoadedFieldsInterface not found/'
+        - '/Call to method markLazyKeyAsLoaded\(\) on an unknown class Pimcore\\Model\\DataObject\\LazyLoadedFieldsInterface/'
+        - '/Call to method isLazyKeyLoaded\(\) on an unknown class Pimcore\\Model\\DataObject\\LazyLoadedFieldsInterface/'
