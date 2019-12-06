@@ -42,9 +42,6 @@ pimcore_js_translation:
 
     # The name of the translation domain used for Pimcore translations.
     domain_name:          pimcore
-
-    # The bundle in which the XLIFF translation files are being saved in.
-    target_bundle:        AppBundle
 ```
 
 ### Continue to the next step!
