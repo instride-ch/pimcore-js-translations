@@ -10,16 +10,17 @@ export default {
   name: 'AppTranslator',
 
   filters: {
-    trans(id, number, parameters, domain, locale) {
+    trans(id, number, parameters = {}, domain, locale) {
       if (!id) {
         return '';
       }
 
       if (Number.isFinite(number)) {
-        let params = parameters;
+        const params = parameters;
 
-        if (Object.keys(params).length) {
-          params = { '%count%': number };
+        if (Object.keys(params).length
+          || !Object.prototype.hasOwnProperty.call(params, 'count')) {
+          params.count = number;
         }
 
         return Translator.transChoice(id, number, params, domain, locale);
