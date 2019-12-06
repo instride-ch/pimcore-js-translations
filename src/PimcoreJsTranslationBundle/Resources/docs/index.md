@@ -11,7 +11,12 @@ Installation is a quick (I promise!) 3 step process:
 
 ## Usage and Features
 
+Additional and optional information and configuration:
+
 - [Dynamic or Static Translations](04-dynamic_or_static_translations.md)
 - [Message Placeholders / Parameters](05-message_placeholders_parameters.md)
-- [Pluralization](06-pluralization.md)
-- [Available Ports](07-available_ports.md)
+- [Dump Translations via CLI Command](06-dump_translations_via_cli_command.md)
+- [Pluralization](07-pluralization.md)
+- [Available Ports](08-available_ports.md)
+
+**Any problem?** Check our [FAQ](99-faq.md).
