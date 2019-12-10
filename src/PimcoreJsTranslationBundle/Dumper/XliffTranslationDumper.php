@@ -49,9 +49,9 @@ class XliffTranslationDumper implements TranslationDumperInterface
     /**
      * {@inheritdoc}
      */
-    public function dump(MessageCatalogue $catalog): string
+    public function dump(MessageCatalogue $catalogue): string
     {
-        return $this->xliffFileDumper->formatCatalogue($catalog, $this->domainName, [
+        return $this->xliffFileDumper->formatCatalogue($catalogue, $this->domainName, [
             'default_locale' => $this->defaultLocale,
             'xliff_version' => '2.0',
         ]);

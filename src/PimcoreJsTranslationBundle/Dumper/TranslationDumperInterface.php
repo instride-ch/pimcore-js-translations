@@ -21,9 +21,9 @@ interface TranslationDumperInterface
     /**
      * Dumps the generated markup of a message catalogue.
      *
-     * @param MessageCatalogue $catalog
+     * @param MessageCatalogue $catalogue
      *
      * @return string
      */
-    public function dump(MessageCatalogue $catalog): string;
+    public function dump(MessageCatalogue $catalogue): string;
 }

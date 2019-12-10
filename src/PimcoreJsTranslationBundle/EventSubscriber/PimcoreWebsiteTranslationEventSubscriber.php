@@ -47,6 +47,8 @@ class PimcoreWebsiteTranslationEventSubscriber implements EventSubscriberInterfa
     }
 
     /**
+     * Handle translation updates.
+     *
      * @param TranslationEvent $event
      */
     public function onPreSave(TranslationEvent $event): void
@@ -61,6 +63,8 @@ class PimcoreWebsiteTranslationEventSubscriber implements EventSubscriberInterfa
     }
 
     /**
+     * Handle translation removals.
+     *
      * @param TranslationEvent $event
      */
     public function onPreDelete(TranslationEvent $event): void
