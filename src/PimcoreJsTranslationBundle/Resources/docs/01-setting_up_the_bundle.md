@@ -9,24 +9,7 @@ To download PimcoreJsTranslationBundle run the following command.
 $ php composer.phar require w-vision/pimcore-js-translation-bundle
 ```
 
-### B) Register BazingaJsTranslationBundle
-
-Register the dependent bundle BazingaJsTranslationBundle in the kernel.
-
-``` php
-<?php
-// app/AppKernel.php
-
-public function registerBundles()
-{
-    $bundles = [
-        // ...
-        new Bazinga\Bundle\JsTranslationBundle\BazingaJsTranslationBundle(),
-    ];
-}
-```
-
-### C) Enable and install PimcoreJsTranslationBundle
+### B) Enable and install PimcoreJsTranslationBundle
 
 First enable and then install the bundle in Pimcore. You can either run the CLI commands for that
 or also use the Pimcore bundle manager.

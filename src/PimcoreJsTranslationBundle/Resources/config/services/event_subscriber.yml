@@ -1,8 +1,0 @@
-services:
-
-    # Pimcore Website Translation Event Subscriber
-    Wvision\Bundle\PimcoreJsTranslationBundle\EventSubscriber\PimcoreWebsiteTranslationEventSubscriber:
-        arguments:
-            - '@Wvision\Bundle\PimcoreJsTranslationBundle\Filesystem\PimcoreTranslationGenerator'
-        tags:
-            - { name: kernel.event_subscriber }

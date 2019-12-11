@@ -1,38 +1,28 @@
 Step 3: Integrating with Client Application
 ===========================================
 
-### A) Define Language
+### A) Load Translations
 
-Define the language you want your content to be translated in, by adding a `lang` attribute to the `html` tag:
+By default the bundle outputs the translations as JavaScript. You can change that behavior by adding a format parameter
+to the `url` helper.
 
 ``` html
-<html lang="{{ app.request.locale|slice(0, 2) }}">
+<script src="{{ url('pimcore_js_translations', { format: 'json' }) }}"></script>
 ```
+
+By default only the locale in the current request is loaded. If you need to load more locales at once, you can define
+another parameter in the `url` helper.
+
+``` html
+<script src="{{ url('pimcore_js_translations', { locales: 'en,de,fr' }) }}"></script>
+```
+
+**Note:** Make sure to comma-separate the locales.
 
 ### B) Load JavaScript Translator Library
 
-To use the `Translator` object in your JS files you can either load it globally or `require` / `import` it as a module.
-
-- To load it globally add the following line to your template. If you want to use
-[dynamic translations](04-dynamic_or_static_translations.md#dynamic-translations) you have to use this approach.
-
-``` html
-<script src="{{ asset('bundles/bazingajstranslation/js/translator.min.js') }}"></script>
-```
-
-- To load it as a module you must be using a module bundler (e.g. `webpack`) and it is recommended that you install the
-translator via `npm`. Then in your JS file you can do:
-
-``` js
-// ES2015
-import Translator from 'bazinga-translator';
-
-// ES5
-var Translator = require('bazinga-translator');
-```
-
-**Important:** The second way of adding the `Translator` can only be used with
-[static translations](04-dynamic_or_static_translations.md#static-translations).
+This bundle does **not** come with its own translator library. You can use whatever library you want for that.
+In case you're not sure how to go about this, have a look at the [example usages](index.md#example-usages).
 
 ### C) Load Translations
 

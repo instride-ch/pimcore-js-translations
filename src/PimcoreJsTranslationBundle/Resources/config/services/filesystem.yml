@@ -1,9 +1,0 @@
-services:
-
-    # Translation File Generator
-    Wvision\Bundle\PimcoreJsTranslationBundle\Filesystem\PimcoreTranslationGenerator:
-        arguments:
-            - '%pimcore_js_translation.domain_name%'
-            - '@Wvision\Bundle\PimcoreJsTranslationBundle\Dumper\XliffTranslationDumper'
-            - '@filesystem'
-            - '@Wvision\Bundle\PimcoreJsTranslationBundle\Loader\XliffTranslationLoader'

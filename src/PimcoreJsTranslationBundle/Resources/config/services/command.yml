@@ -1,8 +1,0 @@
-services:
-
-    # Dump Command
-    Wvision\Bundle\PimcoreJsTranslationBundle\Command\DumpCommand:
-        arguments:
-            - '@Wvision\Bundle\PimcoreJsTranslationBundle\Filesystem\PimcoreTranslationGenerator'
-        tags:
-            - { name: 'console.command', command: 'pimcore:translations:dump-js-translations' }

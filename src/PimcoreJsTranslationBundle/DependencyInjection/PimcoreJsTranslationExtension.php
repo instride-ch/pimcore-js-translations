@@ -8,16 +8,16 @@
  * For the full copyright and license information, please view the LICENSE.md and gpl-3.0.txt
  * files that are distributed with this source code.
  *
- * @copyright  Copyright (c) 2016-2019 w-vision AG (https://www.w-vision.ch)
- * @license    https://github.com/w-vision/PimcoreJsTranslationBundle/blob/master/LICENSE GNU General Public License version 3 (GPLv3)
+ * @copyright Copyright (c) 2016-2019 w-vision AG (https://www.w-vision.ch)
+ * @license   https://github.com/w-vision/PimcoreJsTranslationBundle/blob/master/LICENSE GNU General Public License version 3 (GPLv3)
  */
 
 namespace Wvision\Bundle\PimcoreJsTranslationBundle\DependencyInjection;
 
 use Exception;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
 class PimcoreJsTranslationExtension extends ConfigurableExtension
@@ -41,10 +41,13 @@ class PimcoreJsTranslationExtension extends ConfigurableExtension
      */
     private function registerConfiguration(ContainerBuilder $container, array $config): void
     {
-        // Default Locale
-        $container->setParameter('pimcore_js_translation.default_locale', $config['default_locale']);
+        // Locale Fallback
+        $container->setParameter('pimcore_js_translation.locale_fallback', $config['locale_fallback']);
 
-        // Domain Name
-        $container->setParameter('pimcore_js_translation.domain_name', $config['domain_name']);
+        // HTTP Cache Time
+        $container->setParameter('pimcore_js_translation.http_cache_time', $config['http_cache_time']);
+
+        // Minify Output
+        $container->setParameter('pimcore_js_translation.minify_output', $config['minify_output']);
     }
 }

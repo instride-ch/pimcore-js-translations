@@ -14,26 +14,12 @@
 
 namespace Wvision\Bundle\PimcoreJsTranslationBundle;
 
-use CoreShop\Bundle\ResourceBundle\AbstractResourceBundle;
-use CoreShop\Bundle\ResourceBundle\CoreShopResourceBundle;
-use Pimcore\Extension\Bundle\Installer\InstallerInterface;
-use Pimcore\Extension\Bundle\PimcoreBundleInterface;
+use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
-use Wvision\Bundle\PimcoreJsTranslationBundle\Installer\PimcoreTranslationInstaller;
 
-class PimcoreJsTranslationBundle extends AbstractResourceBundle implements PimcoreBundleInterface
+class PimcoreJsTranslationBundle extends AbstractPimcoreBundle
 {
     use PackageVersionTrait;
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getSupportedDrivers(): array
-    {
-        return [
-            CoreShopResourceBundle::DRIVER_DOCTRINE_ORM,
-        ];
-    }
 
     /**
      * {@inheritdoc}
@@ -57,53 +43,5 @@ class PimcoreJsTranslationBundle extends AbstractResourceBundle implements Pimco
     protected function getComposerPackageName(): string
     {
         return 'w-vision/pimcore-js-translation-bundle';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getInstaller(): ?InstallerInterface
-    {
-        return $this->container->get(PimcoreTranslationInstaller::class);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAdminIframePath()
-    {
-        return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getJsPaths(): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCssPaths(): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEditmodeJsPaths(): array
-    {
-        return [];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEditmodeCssPaths(): array
-    {
-        return [];
     }
 }

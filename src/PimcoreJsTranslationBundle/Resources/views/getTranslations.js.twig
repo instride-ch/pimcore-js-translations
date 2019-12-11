@@ -1,0 +1,10 @@
+module.exports = {
+    'fallback': '{{ fallback }}',
+{% for locale, messages in translations %}
+    '{{ locale }}': {
+    {% for key, message in messages %}
+    {{ key|json_encode|raw }}: {{ message|json_encode|raw }},
+    {% endfor %}
+}
+{% endfor %}
+}
