@@ -46,8 +46,5 @@ class PimcoreJsTranslationExtension extends ConfigurableExtension
 
         // HTTP Cache Time
         $container->setParameter('pimcore_js_translation.http_cache_time', $config['http_cache_time']);
-
-        // Minify Output
-        $container->setParameter('pimcore_js_translation.minify_output', $config['minify_output']);
     }
 }

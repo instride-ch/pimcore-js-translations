@@ -30,6 +30,11 @@ class TranslationController
     private const FORMAT_JAVASCRIPT = 'js';
 
     /**
+     * @var string
+     */
+    private $environment;
+
+    /**
      * @var int
      */
     private $httpCacheTime;
@@ -40,26 +45,21 @@ class TranslationController
     private $localeFallback;
 
     /**
-     * @var bool
-     */
-    private $minifyOutput;
-
-    /**
      * @var Environment
      */
     private $twig;
 
     /**
+     * @param string      $environment
      * @param int         $httpCacheTime
      * @param string      $localeFallback
-     * @param bool        $minifyOutput
      * @param Environment $twig
      */
-    public function __construct(int $httpCacheTime, string $localeFallback, bool $minifyOutput, Environment $twig)
+    public function __construct(string $environment, int $httpCacheTime, string $localeFallback, Environment $twig)
     {
+        $this->environment = $environment;
         $this->httpCacheTime = $httpCacheTime;
         $this->localeFallback = $localeFallback;
-        $this->minifyOutput = $minifyOutput;
         $this->twig = $twig;
     }
 
@@ -107,7 +107,7 @@ class TranslationController
             'translations' => $translations,
         ]);
 
-        if ($this->minifyOutput && $format === self::FORMAT_JAVASCRIPT) {
+        if ('prod' === $this->environment && self::FORMAT_JAVASCRIPT === $format) {
             $minifier = new Minify\JS($content);
             $content = $minifier->minify();
         }

@@ -14,9 +14,6 @@ pimcore_js_translation:
 
     # The amount of seconds the translation content is cached.
     http_cache_time:      86400
-
-    # Whether to output the JavaScript content minified or not.
-    minify_output:        false
 ```
 
 **Note:** You don't have to register the dynamic translation route, this is done automatically for you.

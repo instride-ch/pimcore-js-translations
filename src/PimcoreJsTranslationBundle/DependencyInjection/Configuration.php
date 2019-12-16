@@ -44,12 +44,6 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue(86400)
                 ->end()
 
-                // Minify Output
-                ->booleanNode('minify_output')
-                    ->info('Whether to output the JavaScript content minified or not.')
-                    ->defaultValue(false)
-                ->end()
-
             ->end();
 
         return $treeBuilder;

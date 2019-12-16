@@ -1,9 +1,9 @@
 services:
     Wvision\Bundle\PimcoreJsTranslationBundle\Controller\TranslationController:
         arguments:
+            - '%kernel.environment%'
             - '%pimcore_js_translation.http_cache_time%'
             - '%pimcore_js_translation.locale_fallback%'
-            - '%pimcore_js_translation.minify_output%'
             - '@twig'
         tags:
             - { name: controller.service_arguments }
