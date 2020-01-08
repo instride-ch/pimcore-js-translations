@@ -24,6 +24,6 @@ All the installation instructions are also located in the
 ## License
 **w-vision AG**, Sandgruebestrasse 4, 6210 Sursee, Switzerland  
 [www.w-vision.ch](https://www.w-vision.ch), support@w-vision.ch  
-Copyright © 2019 w-vision AG. All rights reserved.
+Copyright © 2020 w-vision AG. All rights reserved.
 
 For licensing details please visit the [LICENSE](LICENSE) file.
