@@ -88,8 +88,10 @@ class TranslationController
         $translationList->setOrder('asc');
         $translationList->load();
 
+        $defaultDomain = 'messages';
+
         foreach ($locales as $locale) {
-            $translations[$locale] = [];
+            $translations[$locale][$defaultDomain] = [];
 
             foreach ($translationList->getTranslations() as $translation) {
                 $content = $translation->getTranslation($locale);
@@ -98,12 +100,13 @@ class TranslationController
                     continue;
                 }
 
-                $translations[$locale][$translation->getKey()] = $content;
+                $translations[$locale][$defaultDomain][$translation->getKey()] = $content;
             }
         }
 
         $content = $this->twig->render('@PimcoreJsTranslation/getTranslations.' . $format . '.twig', [
             'fallback' => $this->localeFallback,
+            'defaultDomain' => $defaultDomain,
             'translations' => $translations,
         ]);
 

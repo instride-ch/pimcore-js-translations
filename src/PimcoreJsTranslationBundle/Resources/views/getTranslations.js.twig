@@ -1,10 +1,11 @@
-module.exports = {
-    'fallback': '{{ fallback }}',
-{% for locale, messages in translations %}
-    '{{ locale }}': {
-    {% for key, message in messages %}
-    {{ key|json_encode|raw }}: {{ message|json_encode|raw }},
-    {% endfor %}
-}
+(function (t) {
+  t.fallback = "{{ fallback }}";
+  t.defaultDomain = "{{ defaultDomain }}";
+{% for locale, domains in translations %}
+{% for domain, messages in domains %}
+{% for key, message in messages %}
+  t.add({{ key|json_encode|raw }}, {{ message|json_encode|raw }}, "{{ domain }}", "{{ locale }}");
 {% endfor %}
-}
+{% endfor %}
+{% endfor %}
+})(Translator);
