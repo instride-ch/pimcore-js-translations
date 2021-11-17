@@ -18,10 +18,6 @@ or also use the Pimcore bundle manager.
 $ php bin/console pimcore:bundle:enable PimcoreJsTranslationBundle
 ```
 
-``` bash
-$ php bin/console pimcore:bundle:install PimcoreJsTranslationBundle
-```
-
 **Important:** Don't forget to clear the cache and reload the Pimcore interface after you've done that.
 
 ### Continue to the next step!

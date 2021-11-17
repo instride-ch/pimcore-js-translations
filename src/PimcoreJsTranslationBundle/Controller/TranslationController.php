@@ -8,7 +8,7 @@
  * For the full copyright and license information, please view the LICENSE.md and gpl-3.0.txt
  * files that are distributed with this source code.
  *
- * @copyright Copyright (c) 2020 w-vision AG (https://www.w-vision.ch)
+ * @copyright Copyright (c) 2021 w-vision AG (https://www.w-vision.ch)
  * @license   https://github.com/w-vision/PimcoreJsTranslationBundle/blob/master/LICENSE GNU General Public License version 3 (GPLv3)
  */
 
@@ -83,7 +83,7 @@ class TranslationController
 
         $translations = [];
 
-        $translationList = new Translation\Website\Listing();
+        $translationList = new Translation\Listing();
         $translationList->setOrderKey('key');
         $translationList->setOrder('asc');
         $translationList->load();

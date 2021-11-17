@@ -6,7 +6,7 @@
 A pretty nice way to expose your Pimcore shared translation messages to your client applications.
 
 ## Requirements
-* Pimcore 5.8 or 6.0
+* Pimcore 10
 * Bazinga JS Translation 2.0
 
 ## Documentation
