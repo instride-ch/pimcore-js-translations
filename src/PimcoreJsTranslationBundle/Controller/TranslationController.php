@@ -94,7 +94,9 @@ class TranslationController
             $translations[$locale][$defaultDomain] = [];
 
             foreach ($translationList->getTranslations() as $translation) {
-                $content = $translation->getTranslation($locale);
+                if ($translation->hasTranslation($locale)) {
+                    $content = $translation->getTranslation($locale);
+                }
 
                 if (!$content) {
                     continue;
