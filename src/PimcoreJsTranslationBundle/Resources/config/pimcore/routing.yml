@@ -1,6 +1,7 @@
 pimcore_js_translations:
-    path:  /translations.{format}
-    defaults: { _controller: Wvision\Bundle\PimcoreJsTranslationBundle\Controller\TranslationController::getTranslationsAction, format: 'js' }
+    path: /translations.{format}
+    controller: Instride\Bundle\PimcoreJsTranslationBundle\Controller\TranslationController::getTranslationsAction
+    defaults: { format: 'js' }
     methods: [GET]
     options:
         i18n: false

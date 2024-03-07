@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Pimcore JavaScript Translations.
  *
@@ -8,11 +11,11 @@
  * For the full copyright and license information, please view the LICENSE.md and gpl-3.0.txt
  * files that are distributed with this source code.
  *
- * @copyright Copyright (c) 2021 w-vision AG (https://www.w-vision.ch)
- * @license   https://github.com/w-vision/PimcoreJsTranslationBundle/blob/master/LICENSE GNU General Public License version 3 (GPLv3)
+ * @copyright 2024 instride AG (https://instride.ch)
+ * @license   https://github.com/instride-ch/PimcoreJsTranslationBundle/blob/main/LICENSE GNU General Public License version 3 (GPLv3)
  */
 
-namespace Wvision\Bundle\PimcoreJsTranslationBundle\Controller;
+namespace Instride\Bundle\PimcoreJsTranslationBundle\Controller;
 
 use Carbon\Carbon;
 use MatthiasMullie\Minify;
@@ -29,46 +32,14 @@ class TranslationController
 {
     private const FORMAT_JAVASCRIPT = 'js';
 
-    /**
-     * @var string
-     */
-    private $environment;
+    public function __construct(
+        private readonly string $environment,
+        private readonly int $httpCacheTime,
+        private readonly string $localeFallback,
+        private readonly Environment $twig
+    ) {}
 
     /**
-     * @var int
-     */
-    private $httpCacheTime;
-
-    /**
-     * @var string
-     */
-    private $localeFallback;
-
-    /**
-     * @var Environment
-     */
-    private $twig;
-
-    /**
-     * @param string      $environment
-     * @param int         $httpCacheTime
-     * @param string      $localeFallback
-     * @param Environment $twig
-     */
-    public function __construct(string $environment, int $httpCacheTime, string $localeFallback, Environment $twig)
-    {
-        $this->environment = $environment;
-        $this->httpCacheTime = $httpCacheTime;
-        $this->localeFallback = $localeFallback;
-        $this->twig = $twig;
-    }
-
-    /**
-     * @param Request $request
-     * @param string  $format
-     *
-     * @return Response
-     *
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -77,7 +48,7 @@ class TranslationController
     {
         $locales = $this->getLocales($request);
 
-        if (0 === count($locales)) {
+        if (0 === \count($locales)) {
             throw new NotFoundHttpException();
         }
 
@@ -125,7 +96,7 @@ class TranslationController
         );
         $response->prepare($request);
         $response->setPublic();
-        $response->setETag(md5((string) $response->getContent()));
+        $response->setETag(\md5((string) $response->getContent()));
         $response->isNotModified($request);
         $response->setExpires($expirationTime);
 
@@ -134,27 +105,20 @@ class TranslationController
 
     /**
      * Get the locale from the request by default.
-     *
-     * @param Request $request
-     *
-     * @return array
      */
     private function getLocales(Request $request): array
     {
         if (null !== $locales = $request->query->get('locales')) {
-            $locales = explode(',', $locales);
+            $locales = \explode(',', $locales);
         } else {
             $locales = [$request->getLocale()];
         }
 
-        $locales = array_filter($locales, static function ($locale) {
-            return 1 === preg_match('/^[a-z]{2,3}([-_][a-zA-Z]{2})?$/', $locale);
-        });
+        $locales = \array_filter(
+            $locales,
+            static fn ($locale) => 1 === \preg_match('/^[a-z]{2,3}([-_][a-zA-Z]{2})?$/', $locale)
+        );
 
-        $locales = array_unique(array_map(static function ($locale) {
-            return trim($locale);
-        }, $locales));
-
-        return $locales;
+        return \array_unique(\array_map(static fn ($locale) => \trim($locale), $locales));
     }
 }

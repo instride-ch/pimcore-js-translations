@@ -8,7 +8,7 @@ parameters:
     reportUnmatchedIgnoredErrors: false
 
     symfony:
-        container_xml_path: ../../var/cache/dev/appAppKernelDevDebugContainer.xml
+        container_xml_path: ../../var/cache/dev/App_KernelDevDebugContainer.xml
 
     excludes_analyse:
         # Makes PHPStan crash
@@ -26,7 +26,6 @@ parameters:
         - '/Constant PIMCORE_WEB_ROOT not found./'
         - '/Constant PIMCORE_DEVMODE not found./'
         - '/Class Zend_Paginator_Adapter_Interface not found and could not be autoloaded./'
-
         - '/Call to an undefined method Symfony\\Component\\Config\\Definition\\Builder\\NodeDefinition::children()/'
         - '/Call to an undefined method Pimcore\\Model\\(.*)::save()./'
         - '/Call to an undefined method Pimcore\\Model\\(.*)::delete()./'

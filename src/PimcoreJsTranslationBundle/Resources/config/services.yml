@@ -1,5 +1,5 @@
 services:
-    Wvision\Bundle\PimcoreJsTranslationBundle\Controller\TranslationController:
+    Instride\Bundle\PimcoreJsTranslationBundle\Controller\TranslationController:
         arguments:
             - '%kernel.environment%'
             - '%pimcore_js_translation.http_cache_time%'

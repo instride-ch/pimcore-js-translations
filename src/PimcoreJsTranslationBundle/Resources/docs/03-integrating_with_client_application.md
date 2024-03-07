@@ -3,18 +3,18 @@ Step 3: Integrating with Client Application
 
 ### A) Load Translations
 
-By default the bundle outputs the translations as JavaScript. You can change that behavior by adding a format parameter
+By default, the bundle outputs the translations as JavaScript. You can change that behavior by adding a format parameter
 to the `url` helper.
 
 ``` html
-<script src="{{ url('pimcore_js_translations', { format: 'json' }) }}"></script>
+<script src="{{ url('pimcore_js_translations', {'format': 'json'}) }}"></script>
 ```
 
-By default only the locale in the current request is loaded. If you need to load more locales at once, you can define
+By default, only the locale in the current request is loaded. If you need to load more locales at once, you can define
 another parameter in the `url` helper.
 
 ``` html
-<script src="{{ url('pimcore_js_translations', { locales: 'en,de,fr' }) }}"></script>
+<script src="{{ url('pimcore_js_translations', {'locales': 'en,de,fr'}) }}"></script>
 ```
 
 **Note:** Make sure to comma-separate the locales.
@@ -29,7 +29,7 @@ In case you're not sure how to go about this, have a look at the [example usages
 Loading translations is a matter of adding a new `script` tag as follows:
 
 ``` html
-<script src="{{ url('bazinga_jstranslation_js', { domain: 'pimcore' }) }}"></script>
+<script src="{{ url('bazinga_jstranslation_js', {'domain': 'pimcore'}) }}"></script>
 ```
 
 This will use the current `locale` and will return the translated messages found in each `pimcore.CURRENT_LOCALE.xlf`

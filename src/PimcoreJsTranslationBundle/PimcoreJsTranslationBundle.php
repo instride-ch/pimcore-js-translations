@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * Pimcore JavaScript Translations.
  *
@@ -8,11 +11,11 @@
  * For the full copyright and license information, please view the LICENSE.md and gpl-3.0.txt
  * files that are distributed with this source code.
  *
- * @copyright Copyright (c) 2020 w-vision AG (https://www.w-vision.ch)
- * @license   https://github.com/w-vision/PimcoreJsTranslationBundle/blob/master/LICENSE GNU General Public License version 3 (GPLv3)
+ * @copyright 2024 instride AG (https://instride.ch)
+ * @license   https://github.com/instride-ch/PimcoreJsTranslationBundle/blob/main/LICENSE GNU General Public License version 3 (GPLv3)
  */
 
-namespace Wvision\Bundle\PimcoreJsTranslationBundle;
+namespace Instride\Bundle\PimcoreJsTranslationBundle;
 
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
@@ -42,6 +45,6 @@ class PimcoreJsTranslationBundle extends AbstractPimcoreBundle
      */
     protected function getComposerPackageName(): string
     {
-        return 'w-vision/pimcore-js-translation-bundle';
+        return 'instride/pimcore-js-translation';
     }
 }

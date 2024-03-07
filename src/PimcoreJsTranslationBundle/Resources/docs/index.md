@@ -3,7 +3,7 @@ Getting started with Pimcore JavaScript Translations
 
 ## Installation
 
-Installation is a quick (I promise!) 3 step process:
+Installation is a quick (I promise!) 3-step process:
 
 1. [Setting up the Bundle](01-setting_up_the_bundle.md)
 2. [Configuring the Bundle](02-configuring_the_bundle.md)
